@@ -14,12 +14,14 @@ class YoutubeDownloader:
             try:
                 yt.streams.filter(progressive=False, abr='160kbps').first().download(filename=filename)
             except OSError:
-                title = re.sub(r"[^a-zA-Z0-9 ]", "", yt.title)
-                filename = title + ".mp3"
+                filename = self.clean_title(yt.title) + ".mp3"
                 yt.streams.filter(progressive=False, abr='160kbps').first().download(filename=filename)
             except AttributeError:
                 yt.streams.filter(progressive=False, abr='128kbps').first().download(filename=filename)
             print("Descarga realizada con exito! \n")
             url = input("Ingrese la URL del video: ")
+
+    def clean_title(self, title):
+        return re.sub(r"[^a-zA-Z0-9 ]", "", title)
 
 YoutubeDownloader()
