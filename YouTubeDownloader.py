@@ -18,7 +18,7 @@ class YoutubeDownloader:
                 yt.streams.filter(progressive=False, abr='160kbps').first().download(filename=filename)
             except AttributeError:
                 yt.streams.filter(progressive=False, abr='128kbps').first().download(filename=filename)
-            print("Descarga realizada con exito! \n")
+            print("┌─────────────────────────────┐\n Descarga realizada con exito! \n└─────────────────────────────┘\n")
             url = input("Ingrese la URL del video: ")
 
     def clean_title(self, title):
